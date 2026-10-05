@@ -27,7 +27,7 @@ void noteOff(byte channel, byte pitch, byte velocity) {
 void setup() {
   Serial.begin(115200);
 
-  pinMode(5, INPUT_PULLUP);
+  pinMode(2, INPUT_PULLUP);
 
 }
 
@@ -46,12 +46,12 @@ bool isOn = false;
 void loop() {
 
 
-  if (digitalRead(5) == HIGH && isOn) {
+  if (digitalRead(2) == HIGH && isOn) {
     Serial.println("Sending note off");
     noteOff(1, 48, 64);  // Channel 0, middle C, normal velocity
     MidiUSB.flush();
     isOn = false;
-  } else if (digitalRead(5) == LOW && !isOn) {
+  } else if (digitalRead(2) == LOW && !isOn) {
     Serial.println("Sending note on");
     noteOn(1, 48, 64);   // Channel 0, middle C, normal velocity
     MidiUSB.flush();
